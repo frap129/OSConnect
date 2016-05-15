@@ -1,5 +1,5 @@
 # Set Current User
-CURRENT_USER=$(whoami)
+export CURRENT_USER=$(whoami)
 
 # Ask for install type
 while true; do
@@ -13,14 +13,14 @@ done
 
 echo "Installing OSconnect..."
 rm -f ${HOME}/.osconnectrc
-cp home/user/OSConnectrc-$TYPE ${HOME}/.osconnectrc
+cp home/user/OSConnectrc-$Type ${HOME}/.osconnectrc
 echo "export OSCONNECT_USER=$CURRENT_USER" >> ~/.bashrc
-if [ "$TYPE" = "SSH" ]; then
+if [ "$Type" = "SSH" ]; then
   sudo rm -f /root/.profile
   sudo rm -f /root/.osconnectrc
   sudo cp root/.profile /root/.profile
   sudo cp root/OSConnectrc /root/.osconnectrc
-  sudo echo "export OSCONNECT_USER=$CURRENT_USER" >> /root/.bashrc
+  sudo sh -c "echo 'export OSCONNECT_USER=$CURRENT_USER' >> /root/.bashrc"
 fi;
 
 echo "Installing default Ubuntu bashrc..."
@@ -28,7 +28,10 @@ rm -f ${HOME}/.ubunturc
 cp home/user/.ubunturc ${HOME}/.ubunturc
 
 echo "Enabling OSConnect"
-echo "source ~/.osconnect" >> ~/.bashrc
-if [ "$TYPE" = "SSH" ]; then
-  sudo echo "source /root/.osconnect" >> /root/.bashrc
+echo "source ~/.osconnectrc" >> ~/.bashrc
+if [ "$Type" = "SSH" ]; then
+  sudo sh -c 'echo "source /root/.osconnectrc" >> /root/.bashrc'
 fi;
+
+unset Type
+unset CURRENT_USER
