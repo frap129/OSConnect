@@ -1,5 +1,5 @@
 # Ask for OS on connect
-export PS1="[\e[31mOSCONNECT_USER\e[0m@\e[36mArch\e[0m \w\[$(tput sgr0)\]]: "
+export PS1="[\e[31m$(whoami)\e[0m@\e[36mArch\e[0m \w\[$(tput sgr0)\]]: "
 if ! hash apt 2>/dev/null; then
   while true; do
     read -p "Would you like to connect to Arch or Ubuntu?" au
