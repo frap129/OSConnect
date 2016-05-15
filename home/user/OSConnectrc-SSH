@@ -19,6 +19,6 @@ else
     export SCRIPTED=true && script /dev/null; &> /dev/null
   fi;
   echo "Welcome to Ubuntu!";
-  export PS1="[\[$red\]$(whoami)\[txtrst\]@\[$mag\]Ubuntu\[$txtrst\] \w\[$(tput sgr0)\]]: ";
+  export PS1="[\[$red\]$(whoami)\[$txtrst\]@\[$mag\]Ubuntu\[$txtrst\] \w\[$(tput sgr0)\]]: ";
   source .ubunturc
 fi;
