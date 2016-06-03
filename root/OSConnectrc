@@ -11,7 +11,7 @@ txtrst=$(tput sgr0) # Reset
 
 # Ask for OS on connect
 export PS1="[\[$red\]$(whoami)\[$txtrst\]@\[$cya\]Arch\[$txtrst\] \w\[$(tput sgr0)\]]# "
-if ! hash apt-get 2>/dev/null; then
+if ! [[ "$(cat /etc/issue)" = Ubuntu* ]]; then
   while true; do
     read -p "Would you like to connect to Arch or Ubuntu?" au
     case $au in
